@@ -1,76 +1,86 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class FollowPath : MonoBehaviour
 {
     public MovementPath MyPath;
     public float Speed = 1;
-    public float MaxDistanceToGoal = .1f; //how close you need to get to reach a point
+    public float MaxDistanceToGoal = .1f; // How close you need to get to reach a point
+    public float RotationSpeed = 200f; // Speed of rotation in degrees per second
+    public float PauseDuration = 1f; // Time to pause before rotating
 
     private IEnumerator<Transform> pointInPath;
+    private bool isRotating = false;
+    private bool isPaused = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //make sure path is assigned
         if (MyPath == null)
         {
             Debug.LogError("Movement Path is null", gameObject);
             return;
         }
-        
-        //coroutine from MovementPath.cs
+
         pointInPath = MyPath.GetNextPathPoint();
-        //goes to P0
         pointInPath.MoveNext();
-        //if path has no points throw error
+
         if (pointInPath.Current == null)
         {
             Debug.Log("Path has no points", gameObject);
             return;
         }
 
-        //snaps position to P0 before start
         transform.position = pointInPath.Current.position;
+        StartCoroutine(PauseBeforeRotation());
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //double check path has a point & currently at a point
-        if (pointInPath == null || pointInPath.Current == null)
+        if (pointInPath == null || pointInPath.Current == null || isPaused)
         {
             return;
         }
 
-        //look in direction of movement
-        Vector3 direction = pointInPath.Current.position - transform.position;
-        direction.y = 0;
-        if (direction.sqrMagnitude > 0.001f) //prevents rotation when the point is very close
+        // Calculate direction to next point
+        Vector3 direction = (pointInPath.Current.position - transform.position).normalized;
+
+        // Determine target rotation
+        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
+
+        // Rotate towards target
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, RotationSpeed * Time.deltaTime);
+
+        // Check if rotation is complete
+        if (Quaternion.Angle(transform.rotation, targetRotation) < 1f)
         {
-            float angle = Mathf.Atan2(pointInPath.Current.position.y, pointInPath.Current.position.x) * Mathf.Rad2Deg;
-            
-            //CHANGE LATER USING VECTOR3.ROTATETOWARDS()
-            if (pointInPath.Current.position.x < transform.position.x)
-            {
-                transform.rotation = Quaternion.Euler(0, 180, -angle + 90f);
-            } else
-            {
-                transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
-            }
+            isRotating = false;
+        }
+        else
+        {
+            isRotating = true;
         }
 
-        //move towards point
-        transform.position = Vector3.MoveTowards(transform.position, pointInPath.Current.position, Time.deltaTime * Speed);
+        // Move towards point only if rotation is complete
+        if (!isRotating)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, pointInPath.Current.position, Time.deltaTime * Speed);
+        }
 
-        //if the point is reached, move on to next point
-        var distanceSquared = (transform.position - pointInPath.Current.position).sqrMagnitude;
-        if (distanceSquared < MaxDistanceToGoal * MaxDistanceToGoal)
+        // If the point is reached, move to the next point
+        if (!isRotating && (transform.position - pointInPath.Current.position).sqrMagnitude < MaxDistanceToGoal * MaxDistanceToGoal)
         {
             pointInPath.MoveNext();
+            StartCoroutine(PauseBeforeRotation()); // Pause before next rotation
         }
+    }
+
+    private IEnumerator PauseBeforeRotation()
+    {
+        isPaused = true;
+        yield return new WaitForSeconds(PauseDuration);
+        isPaused = false;
+        isRotating = true;
     }
 }
