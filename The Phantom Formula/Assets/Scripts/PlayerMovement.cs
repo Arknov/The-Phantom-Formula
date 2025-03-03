@@ -5,16 +5,17 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     private Rigidbody2D rb;
     private Vector2 movement;
+    private Animator animator;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        
+
         // Freeze the rotation to prevent the player from rotating due to physics
         rb.freezeRotation = true;
+        animator = GetComponent<Animator>();
 
-        // Adjust the sprite to face up by default (90 degrees counterclockwise from the right)
-        transform.rotation = Quaternion.Euler(0, 0, 90);
     }
 
     void Update()
@@ -26,18 +27,23 @@ public class PlayerMovement : MonoBehaviour
         // Normalize movement to prevent faster diagonal movement
         movement = movement.normalized;
 
-        // Snap the sprite's rotation directly to the movement direction
-        if (movement.sqrMagnitude > 0)
+        if (movement.x > 0)
         {
-            // Calculate angle of movement direction
-            float targetAngle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
-
-            // Adjust the target angle to account for initial 90-degree clockwise rotation of the sprite
-            targetAngle -= 360f;  // Adjust for default sprite's 90-degree clockwise rotation
-
-            // Set the rotation directly to make the sprite face the correct direction
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, targetAngle));
+            animator.Play("moveRight");
         }
+        else if (movement.x < 0)
+        {
+            animator.Play("moveLeft");
+        }
+        else if (movement.y > 0)
+        {
+            animator.Play("moveUP");
+        }
+        else if (movement.y < 0)
+        {
+            animator.Play("moveDown");
+        }
+        
     }
 
     void FixedUpdate()
