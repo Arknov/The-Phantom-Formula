@@ -3,7 +3,7 @@
 
 Made for Hack Club Jungle Challenge
 
-**Team Members:** Arknov, Nathan Samms, peelan
+**Team Members:** Arknov, Nathan Samms, peelan, Schloobi
 
 ## One-Line Pitch
 It's like *Metal Gear Solid* meets *Breaking Bad*, but with a dynamic crafting system that makes every stealth mission unpredictable.
