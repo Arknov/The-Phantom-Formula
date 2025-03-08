@@ -42,11 +42,11 @@ public class EnemyMovement : MonoBehaviour
         StartCoroutine(PauseBeforeRotation());
 
         // Find the player object by tag
-        player = GameObject.FindGameObjectWithTag("PlayerObj");
+        player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
         {
             // Log an error if the player object is not found
-            Debug.LogError("Player object not found. Please ensure the player object has the tag 'PlayerObj'.");
+            Debug.LogError("Player object not found. Please ensure the player object has the tag 'Player'.");
         }
 
         // Initialize the LineRenderer
@@ -122,7 +122,7 @@ public class EnemyMovement : MonoBehaviour
             if (ray.collider != null)
             {
                 // Check if the ray hit the player object
-                hasLineOfSight = ray.collider.CompareTag("PlayerObj");
+                hasLineOfSight = ray.collider.CompareTag("Player");
                 if (hasLineOfSight)
                 {
                     // Draw a green ray if the object has line of sight to the player
