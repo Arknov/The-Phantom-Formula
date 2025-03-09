@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      png-clipart-key-icon-security-lock-pixel-art-8-bit-art-design-pixel-removebg-preview_0: -8896994345505809784
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
