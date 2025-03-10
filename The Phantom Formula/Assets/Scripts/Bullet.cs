@@ -4,10 +4,24 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 10f;
     public float lifeTime = 2f;
+    private Collider2D playerCollider;
 
     private void Start()
     {
-        Destroy(gameObject, lifeTime); // Destroy bullet after X seconds
+        // Find the player object by tag and get its collider
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            playerCollider = player.GetComponent<Collider2D>();
+            if (playerCollider != null)
+            {
+                // Ignore collision between the bullet and the player
+                Physics2D.IgnoreCollision(GetComponent<Collider2D>(), playerCollider);
+            }
+        }
+
+        // Destroy bullet after X seconds
+        Destroy(gameObject, lifeTime);
     }
 
     private void Update()
@@ -24,3 +38,4 @@ public class Bullet : MonoBehaviour
         }
     }
 }
+
