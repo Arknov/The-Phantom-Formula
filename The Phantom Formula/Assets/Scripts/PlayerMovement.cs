@@ -14,7 +14,8 @@ public class PlayerMovement : MonoBehaviour
 
         // Freeze the rotation to prevent the player from rotating due to physics
         rb.freezeRotation = true;
-        animator = GetComponent<Animator>();
+        
+        //animator = GetComponent<Animator>();
 
     }
 
@@ -26,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Normalize movement to prevent faster diagonal movement
         movement = movement.normalized;
-
+        /*
         if (movement.x > 0)
         {
             animator.Play("moveRight");
@@ -43,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.Play("moveDown");
         }
-        
+        */
     }
 
     void FixedUpdate()

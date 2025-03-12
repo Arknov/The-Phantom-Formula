@@ -33,6 +33,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Enemy")) // If the bullet hits an enemy
         {
+            Debug.Log("hit enemy");
             Destroy(collision.gameObject); // Destroy enemy
             Destroy(gameObject); // Destroy bullet
         }

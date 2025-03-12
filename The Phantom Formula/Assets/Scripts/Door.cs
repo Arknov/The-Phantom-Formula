@@ -19,12 +19,15 @@ public class Door : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        InventoryManager inventory = collision.GetComponent<InventoryManager>();
-
-        if (inventory.HasKey())
+        if (collision.tag == "Player")
         {
-            this.GetComponent<SpriteRenderer>().sprite = OpenDoor;
-            this.GetComponent<BoxCollider2D>().enabled = false;
+            InventoryManager inventory = collision.GetComponent<InventoryManager>();
+
+            if (inventory.HasKey())
+            {
+                this.GetComponent<SpriteRenderer>().sprite = OpenDoor;
+                this.GetComponent<BoxCollider2D>().enabled = false;
+            }
         }
     }
 }
