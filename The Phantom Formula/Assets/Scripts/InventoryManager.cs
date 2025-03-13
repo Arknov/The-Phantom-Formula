@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class InventoryManager : MonoBehaviour
     {
         NumKeysText.text = "No Key";
     }
-
+    
     // Update is called once per frame
     void Update()
     {
