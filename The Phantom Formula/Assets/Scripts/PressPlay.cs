@@ -30,6 +30,6 @@ public class PressPlay : MonoBehaviour
     void taskOnClick()
     {
         Debug.Log("You have clicked the button!");
-        SceneManager.LoadScene(sceneName: "SampleScene");
+        SceneManager.LoadScene(sceneName: "HomeBase");
     }
 }
