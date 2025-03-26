@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class PewPew : MonoBehaviour
@@ -6,13 +7,15 @@ public class PewPew : MonoBehaviour
     public Transform firePoint;
     public float bulletSpeed = 10f;
     public Transform playerTransform; // Reference to the player's transform
-    public Vector3 offset = new Vector3(1f, 0f, 0f); // Offset to move the gun to the right
     public Vector3 gunScale = new Vector3(5f, 5f, 1f); // Scale to make the gun larger
+    public int ammo = 5;
+    public TMP_Text AmmoText;
 
     private void Start()
     {
         // Set the initial scale of the gun
         transform.localScale = gunScale;
+        AmmoText.text = "Ammo: " + ammo;
     }
 
     private void Update()
@@ -23,8 +26,8 @@ public class PewPew : MonoBehaviour
             return;
         }
 
-        // Make the gun follow the player with an offset to the right
-        transform.position = playerTransform.position + offset;
+        // Make the gun follow the player
+        transform.position = playerTransform.position;
 
         // Rotate the gun towards the mouse position
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -43,9 +46,11 @@ public class PewPew : MonoBehaviour
             transform.localScale = gunScale;
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && ammo > 0)
         {
             Shoot();
+            ammo--;
+            AmmoText.text = "Ammo: " + ammo;
         }
     }
 
