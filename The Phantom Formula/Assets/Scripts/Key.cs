@@ -18,7 +18,7 @@ public class Key : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            collision.GetComponent<InventoryManager>().PickupKey();
+            collision.GetComponent<TempInventoryManager>().PickupKey();
             Destroy(gameObject);
         }
     }

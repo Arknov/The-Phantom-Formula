@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class InventoryManager : MonoBehaviour
+public class TempInventoryManager : MonoBehaviour
 {
     public TMP_Text NumKeysText;
 

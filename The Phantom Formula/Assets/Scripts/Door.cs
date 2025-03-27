@@ -21,7 +21,7 @@ public class Door : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            InventoryManager inventory = collision.GetComponent<InventoryManager>();
+            TempInventoryManager inventory = collision.GetComponent<TempInventoryManager>();
 
             if (inventory.HasKey())
             {
