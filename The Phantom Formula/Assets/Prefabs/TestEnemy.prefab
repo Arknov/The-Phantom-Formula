@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9003282410050574923}
   - component: {fileID: 735824696385798731}
   - component: {fileID: 3099382996529629810}
+  - component: {fileID: -9044184041402397753}
   m_Layer: 3
   m_Name: TestEnemy
   m_TagString: Enemy
@@ -33,6 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5738459228123517606}
+  - {fileID: 5667291051962899447}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9003282410050574923
@@ -52,9 +54,12 @@ MonoBehaviour:
   MaxDistanceToGoal: 0.1
   RotationSpeed: 200
   PauseDuration: 1
+  enemyAttack: {fileID: 0}
+  DeathPanel: {fileID: 0}
   visionSpeed: 1.5
   visionRange: 5
   visionAngle: 90
+  shootingInterval: 1
 --- !u!120 &735824696385798731
 LineRenderer:
   serializedVersion: 2
@@ -208,6 +213,52 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.65, y: 0.65}
   m_EdgeRadius: 0
+--- !u!114 &-9044184041402397753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925321891789582140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23dd37266ca5e924abd44423a55f176b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 5966780175895738204, guid: b49168fee3ff57945b748d55a1d20b94, type: 3}
+  firePoint: {fileID: 5667291051962899447}
+  bulletSpeed: 10
+--- !u!1 &3510069770556590778
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5667291051962899447}
+  m_Layer: 3
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5667291051962899447
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3510069770556590778}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.3214, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3582494050447535891}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4700189462952096519
 GameObject:
   m_ObjectHideFlags: 0

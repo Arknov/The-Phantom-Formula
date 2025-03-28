@@ -8,6 +8,8 @@ TagManager:
   - Bullet
   - Block
   - Wall
+  - Death Panel
+  - Current Scene Manager
   layers:
   - Default
   - TransparentFX

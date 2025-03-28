@@ -60,4 +60,3 @@ public class PewPew : MonoBehaviour
         bullet.GetComponent<Rigidbody2D>().linearVelocity = firePoint.right * bulletSpeed;
     }
 }
-

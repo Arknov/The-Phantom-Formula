@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -9,6 +10,8 @@ public class EnemyMovement : MonoBehaviour
     public float MaxDistanceToGoal = .1f; // How close you need to get to reach a point
     public float RotationSpeed = 200f; // Speed of rotation in degrees per second
     public float PauseDuration = 1f; // Time to pause before rotating
+
+    public EnemyAttack enemyAttack; //EnemyAttack.cs script
 
     [SerializeField] private float visionSpeed = 1.5f; // Speed at which the object moves towards the player
     [SerializeField] private float visionRange = 5f; // Maximum distance for the raycast to detect the player
@@ -20,10 +23,15 @@ public class EnemyMovement : MonoBehaviour
     private bool isRotating = false;
     private bool isPaused = false;
 
+    private float shootingTimer = 0f;
+    [SerializeField] private float shootingInterval = 1f;
+
     private LineRenderer lineRenderer; // LineRenderer to draw the FOV
 
     void Start()
     {
+        enemyAttack = GetComponent<EnemyAttack>();
+
         if (MyPath == null)
         {
             Debug.LogError("Movement Path is null", gameObject);
@@ -64,6 +72,14 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
+        //shoots every [shootingInterval] seconds
+        shootingTimer += Time.deltaTime;
+        if (shootingTimer >= shootingInterval)
+        {
+            shootingTimer = 0f;
+            enemyAttack.shootAtPlayer();
+        }
+
         if (hasLineOfSight && player != null)
         {
             // Calculate direction to next point
@@ -91,6 +107,8 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
+            shootingTimer = 0f;
+
             if (pointInPath == null || pointInPath.Current == null || isPaused)
             {
                 return;
