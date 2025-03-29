@@ -538,6 +538,7 @@ GameObject:
   - component: {fileID: 356953774}
   - component: {fileID: 356953773}
   - component: {fileID: 356953772}
+  - component: {fileID: 356953775}
   m_Layer: 5
   m_Name: BackToHomeBase
   m_TagString: Untagged
@@ -609,8 +610,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1301849615}
-        m_TargetAssemblyTypeName: CurrentSceneManager, Assembly-CSharp
+      - m_Target: {fileID: 356953775}
+        m_TargetAssemblyTypeName: BackToHomeBaseButton, Assembly-CSharp
         m_MethodName: LoadHomeBase
         m_Mode: 1
         m_Arguments:
@@ -659,6 +660,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 356953770}
   m_CullTransparentMesh: 1
+--- !u!114 &356953775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356953770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809987cb990daaa4cb7ef24cb17f6e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &395262123
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -718,13 +731,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8484555401107333341, guid: f1c2fb5010eb67745af5e728487955f1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 395262126}
   m_SourcePrefab: {fileID: 100100000, guid: f1c2fb5010eb67745af5e728487955f1, type: 3}
 --- !u!4 &395262124 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3810838715473030401, guid: f1c2fb5010eb67745af5e728487955f1, type: 3}
   m_PrefabInstance: {fileID: 395262123}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &395262125 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8484555401107333341, guid: f1c2fb5010eb67745af5e728487955f1, type: 3}
+  m_PrefabInstance: {fileID: 395262123}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &395262126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395262125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac610556791e5b84c8c1a9f01e07764c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathPanel: {fileID: 1631009008}
 --- !u!1 &516682826
 GameObject:
   m_ObjectHideFlags: 0
@@ -17959,66 +17993,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1844498dd0c263641a2add6af4f4839d, type: 3}
---- !u!1 &1301849614
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1301849616}
-  - component: {fileID: 1301849615}
-  - component: {fileID: 1301849617}
-  m_Layer: 0
-  m_Name: SceneManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1301849615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301849614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 488fb1ca8975b1b468824af54c0cdf45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeathPanel: {fileID: 1631009008}
---- !u!4 &1301849616
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301849614}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 952.66895, y: 635.4603, z: 6.3077993}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1301849617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301849614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51b3c3e8656b7f74680c0a55dec043e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RetryButton: {fileID: 2139124068}
-  BackToHomeBaseButton: {fileID: 356953772}
 --- !u!1 &1512501931
 GameObject:
   m_ObjectHideFlags: 0
@@ -18839,6 +18813,7 @@ GameObject:
   - component: {fileID: 2139124070}
   - component: {fileID: 2139124069}
   - component: {fileID: 2139124068}
+  - component: {fileID: 2139124071}
   m_Layer: 5
   m_Name: RetryLevel
   m_TagString: Untagged
@@ -18910,9 +18885,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1301849615}
-        m_TargetAssemblyTypeName: CurrentSceneManager, Assembly-CSharp
-        m_MethodName: ReloadScene
+      - m_Target: {fileID: 2139124071}
+        m_TargetAssemblyTypeName: RetryLevelButton, Assembly-CSharp
+        m_MethodName: RetryLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18960,6 +18935,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2139124066}
   m_CullTransparentMesh: 1
+--- !u!114 &2139124071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139124066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a93565f55de80b4b84b4bb11c40ce8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -18977,4 +18964,3 @@ SceneRoots:
   - {fileID: 573072280}
   - {fileID: 114846981}
   - {fileID: 1016437821}
-  - {fileID: 1301849616}

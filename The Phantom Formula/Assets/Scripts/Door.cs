@@ -6,6 +6,8 @@ public class Door : MonoBehaviour
 {
     public Sprite OpenDoor;
 
+    public string color;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,10 +25,10 @@ public class Door : MonoBehaviour
         {
             TempInventoryManager inventory = collision.GetComponent<TempInventoryManager>();
 
-            if (inventory.HasKey())
+            if (inventory.HasKey(color))
             {
-                this.GetComponent<SpriteRenderer>().sprite = OpenDoor;
-                this.GetComponent<BoxCollider2D>().enabled = false;
+                GetComponent<SpriteRenderer>().sprite = OpenDoor;
+                GetComponent<BoxCollider2D>().enabled = false;
             }
         }
     }

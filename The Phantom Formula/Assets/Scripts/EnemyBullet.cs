@@ -5,14 +5,15 @@ public class EnemyBullet : MonoBehaviour
     public float speed = 10f;
     public float lifeTime = 2f;
 
-    [SerializeField] CurrentSceneManager currentSceneManager;
+    private PlayerManager playerManager;
 
     private void Start()
     {
-        currentSceneManager = FindAnyObjectByType<CurrentSceneManager>();
+        playerManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
 
         // Find the enemies object by tag and get their colliders
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
         // Ignore collision between the bullet and the enemies
         if (enemies != null)
         {
@@ -40,7 +41,7 @@ public class EnemyBullet : MonoBehaviour
     {
         if (collision.CompareTag("Player")) // If the bullet hits the player
         {
-            currentSceneManager.KillPlayer();
+            playerManager.Die();
             Destroy(gameObject); // Destroy bullet
         }
 

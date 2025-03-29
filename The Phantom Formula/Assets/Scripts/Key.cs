@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
+    public string color;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,7 +20,7 @@ public class Key : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            collision.GetComponent<TempInventoryManager>().PickupKey();
+            collision.GetComponent<TempInventoryManager>().PickupKey(color);
             Destroy(gameObject);
         }
     }
