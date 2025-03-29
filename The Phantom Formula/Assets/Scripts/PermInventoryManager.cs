@@ -26,22 +26,13 @@ public class PermInventoryManager : MonoBehaviour
         //initialize each item type at zero
         inventory.Add("electronics", 0);
         inventory.Add("metal", 0);
+        inventory.Add("ammo", 5);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //for testing purposes
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Debug.Log(inventory["metal"] + " metal");
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            addItems("metal", 100);
-            Debug.Log("Debug: +100 metal");
-        }
-        //^^^^^^^^^^^^^^^^^^^^^^
+        
     }
 
     //add items to the iventory
@@ -50,7 +41,9 @@ public class PermInventoryManager : MonoBehaviour
         if (inventory.ContainsKey(itemType))
         {
             inventory[itemType] = inventory[itemType] + numItems;
-        } else
+            Debug.Log("added " + numItems + " " + itemType + " to inventory");
+        } 
+        else
         {
             Debug.Log("Tried to access item type " + itemType + " which does not exist");
         }

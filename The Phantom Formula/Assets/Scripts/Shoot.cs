@@ -8,11 +8,15 @@ public class PewPew : MonoBehaviour
     public float bulletSpeed = 10f;
     public Transform playerTransform; // Reference to the player's transform
     public Vector3 gunScale = new Vector3(5f, 5f, 1f); // Scale to make the gun larger
-    public int ammo = 5;
+    public int ammo;
     public TMP_Text AmmoText;
+
+    private PermInventoryManager inventory;
 
     private void Start()
     {
+        inventory = PermInventoryManager.Instance;
+        ammo = inventory.getItemCount("ammo");
         // Set the initial scale of the gun
         transform.localScale = gunScale;
         AmmoText.text = "Ammo: " + ammo;
@@ -49,8 +53,6 @@ public class PewPew : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && ammo > 0)
         {
             Shoot();
-            ammo--;
-            AmmoText.text = "Ammo: " + ammo;
         }
     }
 
@@ -58,5 +60,8 @@ public class PewPew : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         bullet.GetComponent<Rigidbody2D>().linearVelocity = firePoint.right * bulletSpeed;
+        inventory.removeItems("ammo", 1);
+        ammo = inventory.getItemCount("ammo");
+        AmmoText.text = "Ammo: " + ammo;
     }
 }

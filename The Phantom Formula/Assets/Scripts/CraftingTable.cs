@@ -3,16 +3,18 @@ using UnityEngine;
 
 public class CraftingTable : MonoBehaviour
 {
-    [SerializeField] private PermInventoryManager inventory;
+    private PermInventoryManager inventory;
     [SerializeField] private GameObject TextPopUp;
     [SerializeField] private GameObject CraftingScreen;
-    
+    [SerializeField] private TMP_Text MetalCountText;
+    [SerializeField] private TMP_Text ElectronicsCountText;
+
     private bool playerInBox = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        inventory = PermInventoryManager.Instance;
     }
 
     // Update is called once per frame
@@ -29,6 +31,7 @@ public class CraftingTable : MonoBehaviour
         if (collision.tag == "Player")
         {
             playerInBox = true;
+            UpdateText();
             TextPopUp.SetActive(true);
         }
     }
@@ -40,5 +43,11 @@ public class CraftingTable : MonoBehaviour
             TextPopUp.SetActive(false);
             CraftingScreen.SetActive(false);
         }
+    }
+    
+    public void UpdateText()
+    {
+        MetalCountText.text = "Metal: " + inventory.getItemCount("metal").ToString();
+        ElectronicsCountText.text = "Electronics: " + inventory.getItemCount("electronics").ToString();
     }
 }
